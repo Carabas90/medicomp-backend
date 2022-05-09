@@ -3,6 +3,7 @@ package com.medicomp.medicompbackend.model;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Medication {
     private int id;
     private String name;
@@ -23,8 +24,17 @@ public class Medication {
         this.unknownCompatibility = new ArrayList<>();
     }
 
+    public Medication(){
+        this.incompatibleMeds = new ArrayList<>();
+        this.unknownCompatibility = new ArrayList<>();
+    }
+
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
