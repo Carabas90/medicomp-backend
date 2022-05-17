@@ -7,10 +7,12 @@ import com.medicomp.medicompbackend.model.Medication;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class MediRepository {
     private List<Medication> meds;
     private static final String path = "src/main/resources/MediRepository.json";
+    private static int highestId;
 
     private MediRepository() {
         this.meds = new ArrayList<>();
@@ -30,11 +32,12 @@ public class MediRepository {
 
     public void addMed(Medication med) {
         if (!meds.contains(med)) {
-            meds.add(med);
+            meds.add(new Medication(++highestId, med.getName()));
         }
     }
 
     public List<Medication> getMeds() {
         return meds;
     }
+
 }

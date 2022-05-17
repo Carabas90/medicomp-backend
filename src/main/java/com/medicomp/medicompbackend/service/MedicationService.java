@@ -30,4 +30,15 @@ public class MedicationService {
             e.printStackTrace();
         }
     }
+
+    public Medication getMedicationById(int id){
+        for (Medication med : mediRepository.getMeds()){
+            if (med.getId() == id){
+                return med;
+            }
+        }
+        throw new IllegalArgumentException("No Medication whith this id found");
+    }
+
+
 }
