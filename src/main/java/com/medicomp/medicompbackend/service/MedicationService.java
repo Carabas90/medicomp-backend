@@ -1,6 +1,7 @@
 package com.medicomp.medicompbackend.service;
 
 import com.medicomp.medicompbackend.model.Medication;
+import com.medicomp.medicompbackend.model.MedicationPairing;
 import com.medicomp.medicompbackend.repository.MediRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,10 @@ public class MedicationService {
         return mediRepository.getMeds();
     }
 
+    public List<MedicationPairing> getPairings(){
+        return mediRepository.getPairings();
+    }
+
     public void addMedication(Medication med){
         mediRepository.addMed(med);
         try {
@@ -37,8 +42,18 @@ public class MedicationService {
                 return med;
             }
         }
-        throw new IllegalArgumentException("No Medication whith this id found");
+        throw new IllegalArgumentException("No Medication with this id found");
     }
+
+    public MedicationPairing getPairingById(int id){
+        for (MedicationPairing pair: mediRepository.getPairings()){
+            if (pair.getId()== id){
+                return pair;
+            }
+        }
+        throw new IllegalArgumentException("No Pairing with this id found");
+    }
+
 
 
 }

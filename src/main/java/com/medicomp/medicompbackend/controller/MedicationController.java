@@ -1,6 +1,7 @@
 package com.medicomp.medicompbackend.controller;
 
 import com.medicomp.medicompbackend.model.Medication;
+import com.medicomp.medicompbackend.model.MedicationPairing;
 import com.medicomp.medicompbackend.service.MedicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,13 +23,19 @@ public class MedicationController {
         return mediService.getMedicationById(id);
     }
 
+    @GetMapping(path ="/pairing")
+    public List<MedicationPairing> getPairings(){
+        return mediService.getPairings();
+    }
+
+    @GetMapping(path="/pairing/{id}")
+    public MedicationPairing getPairing(@PathVariable int id){
+        return mediService.getPairingById(id);
+    }
+
     @PostMapping(path = "/medication")
     public void addMedication(@RequestBody Medication med){
         mediService.addMedication(med);
     }
 
-    @PostMapping(path = "/medication/{id}/incomp/{foreignId}")
-    public void addIncompatibility(@PathVariable int id, @PathVariable int foreignId){
-        mediService.addIncompatibility(id, foreignId);
-    }
 }

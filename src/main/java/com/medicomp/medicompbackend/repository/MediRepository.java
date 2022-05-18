@@ -13,9 +13,10 @@ public class MediRepository {
     private List<Medication> meds;
     private List<MedicationPairing> pairings;
     private static final String path = "src/main/resources/MediRepository.json";
-    private static int highestId;
+    private int highestMedId;
+    private int highestPairingId;
 
-    private MediRepository() {
+    public MediRepository() {
         this.meds = new ArrayList<>();
         this.pairings = new ArrayList<>();
     }
@@ -34,7 +35,7 @@ public class MediRepository {
 
     public void addMed(Medication newMed) {
         if (medicationNotYetInMeds(newMed)) {
-            Medication med = new Medication(++highestId, newMed.getName());
+            Medication med = new Medication(++highestMedId, newMed.getName());
             addPairings(med);
             meds.add(med);
         }
@@ -42,7 +43,7 @@ public class MediRepository {
 
     private void addPairings(Medication newMed) {
         for (Medication med : meds) {
-            pairings.add(new MedicationPairing(med, newMed));
+            pairings.add(new MedicationPairing(++highestPairingId,med, newMed));
         }
     }
 
@@ -59,4 +60,7 @@ public class MediRepository {
         return meds;
     }
 
+    public List<MedicationPairing> getPairings(){
+        return pairings;
+    }
 }

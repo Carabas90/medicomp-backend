@@ -3,16 +3,19 @@ package com.medicomp.medicompbackend.model;
 import java.util.Arrays;
 
 public class MedicationPairing {
+    private int id;
     private Medication[] meds;
     private Compatibility comp;
 
-    public MedicationPairing(Medication med1, Medication med2) {
+    public MedicationPairing(int id, Medication med1, Medication med2) {
+        this.id = id;
         this.meds = new Medication[]{med1, med2};
         this.comp = Compatibility.UNKNOWN;
     }
 
-    public MedicationPairing(Medication[] meds) {
+    public MedicationPairing(int id, Medication[] meds) {
         if (meds.length == 2) {
+            this.id = id;
             this.meds = meds;
             this.comp = Compatibility.UNKNOWN;
         }
@@ -32,11 +35,14 @@ public class MedicationPairing {
     }
 
     public boolean equals(MedicationPairing other) {
-       if (Arrays.asList(meds).containsAll(Arrays.asList(other))){
+       if (Arrays.asList(meds).containsAll(Arrays.asList(other.getMeds()))){
             return true;
         }else {
             return false;
         }
     }
 
+    public int getId() {
+        return id;
+    }
 }
