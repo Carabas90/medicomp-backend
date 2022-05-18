@@ -32,7 +32,7 @@ public class MedicationPairing {
     }
 
     public boolean equals(MedicationPairing other) {
-        if ((other.getMeds()[0] == meds[0] || other.getMeds()[0] == meds[1]) && (other.getMeds()[1] == meds[0] || other.getMeds()[1] == meds[1])) {
+       if (Arrays.asList(meds).containsAll(Arrays.asList(other))){
             return true;
         }else {
             return false;

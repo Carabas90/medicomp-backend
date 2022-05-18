@@ -3,19 +3,21 @@ package com.medicomp.medicompbackend.repository;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import com.medicomp.medicompbackend.model.Medication;
+import com.medicomp.medicompbackend.model.MedicationPairing;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class MediRepository {
     private List<Medication> meds;
+    private List<MedicationPairing> pairings;
     private static final String path = "src/main/resources/MediRepository.json";
     private static int highestId;
 
     private MediRepository() {
         this.meds = new ArrayList<>();
+        this.pairings = new ArrayList<>();
     }
 
     public static MediRepository loadRepository() throws FileNotFoundException {
@@ -30,10 +32,27 @@ public class MediRepository {
         writer.close();
     }
 
-    public void addMed(Medication med) {
-        if (!meds.contains(med)) {
-            meds.add(new Medication(++highestId, med.getName()));
+    public void addMed(Medication newMed) {
+        if (medicationNotYetInMeds(newMed)) {
+            Medication med = new Medication(++highestId, newMed.getName());
+            addPairings(med);
+            meds.add(med);
         }
+    }
+
+    private void addPairings(Medication newMed) {
+        for (Medication med : meds) {
+            pairings.add(new MedicationPairing(med, newMed));
+        }
+    }
+
+    private boolean medicationNotYetInMeds(Medication newMed) {
+        for (Medication med : meds) {
+            if (med.getName().equals(newMed.getName())) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public List<Medication> getMeds() {
