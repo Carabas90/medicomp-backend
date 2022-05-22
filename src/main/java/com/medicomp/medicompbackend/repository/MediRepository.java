@@ -66,8 +66,8 @@ public class MediRepository {
 
     public void deleteMedication(Medication med) {
         List<MedicationPairing> pairingsToRemove = new ArrayList<>();
-        for (MedicationPairing pairing: pairings){
-            if (pairing.contains(med)){
+        for (MedicationPairing pairing : pairings) {
+            if (pairing.contains(med)) {
                 pairingsToRemove.add(pairing);
             }
         }
