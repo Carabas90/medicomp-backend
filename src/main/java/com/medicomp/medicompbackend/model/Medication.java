@@ -1,5 +1,7 @@
 package com.medicomp.medicompbackend.model;
 
+import java.util.Objects;
+
 public class Medication {
     private int id;
     private String name;
@@ -9,7 +11,8 @@ public class Medication {
         this.name = name;
     }
 
-    public Medication(){}
+    public Medication() {
+    }
 
     public int getId() {
         return id;
@@ -27,4 +30,16 @@ public class Medication {
         this.name = name;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Medication that = (Medication) o;
+        return id == that.id && Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
+    }
 }

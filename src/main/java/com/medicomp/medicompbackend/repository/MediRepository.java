@@ -43,7 +43,7 @@ public class MediRepository {
 
     private void addPairings(Medication newMed) {
         for (Medication med : meds) {
-            pairings.add(new MedicationPairing(++highestPairingId,med, newMed));
+            pairings.add(new MedicationPairing(++highestPairingId, med, newMed));
         }
     }
 
@@ -60,7 +60,18 @@ public class MediRepository {
         return meds;
     }
 
-    public List<MedicationPairing> getPairings(){
+    public List<MedicationPairing> getPairings() {
         return pairings;
+    }
+
+    public void deleteMedication(Medication med) {
+        List<MedicationPairing> pairingsToRemove = new ArrayList<>();
+        for (MedicationPairing pairing: pairings){
+            if (pairing.contains(med)){
+                pairingsToRemove.add(pairing);
+            }
+        }
+        pairings.removeAll(pairingsToRemove);
+        meds.remove(med);
     }
 }

@@ -44,13 +44,18 @@ public class MedicationController {
     }
 
     @PutMapping(path = "/medication/{id}")
-    public void updateMedication(@PathVariable int id, @RequestBody Medication medInfo){
+    public void updateMedication(@PathVariable int id, @RequestBody Medication medInfo) {
         mediService.updateMedication(id, medInfo);
     }
 
     @PutMapping(path = "/pairing/{id}")
-    public void updatePairing(@PathVariable int id, @RequestBody MedicationPairing pairingInfo ){
+    public void updatePairing(@PathVariable int id, @RequestBody MedicationPairing pairingInfo) {
         mediService.updatePairing(id, pairingInfo);
+    }
+
+    @DeleteMapping(path = "/medication/{id}")
+    public void deleteMedication(@PathVariable int id) {
+        mediService.deleteMedication(id);
     }
 
 }

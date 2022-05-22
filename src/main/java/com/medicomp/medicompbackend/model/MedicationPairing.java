@@ -22,7 +22,7 @@ public class MedicationPairing {
         throw new IllegalArgumentException("Only 2 Medications in Array allowed");
     }
 
-    public MedicationPairing(){
+    public MedicationPairing() {
 
     }
 
@@ -39,11 +39,9 @@ public class MedicationPairing {
     }
 
     public boolean equals(MedicationPairing other) {
-       if (Arrays.asList(meds).containsAll(Arrays.asList(other.getMeds()))){
-            return true;
-        }else {
-            return false;
-        }
+        return (Arrays.asList(meds).containsAll(Arrays.asList(other.getMeds())));
+
+
     }
 
     public int getId() {
@@ -51,18 +49,18 @@ public class MedicationPairing {
     }
 
     public boolean containsMedicationWithName(String name) {
-        if (meds[0].getName().equals(name) || meds[1].getName().equals(name)){
-            return true;
-        }else{
-            return false;
-        }
+        return (meds[0].getName().equals(name) || meds[1].getName().equals(name));
+
+
     }
 
     public boolean containsMedicationWithId(int id) {
-        if (meds[0].getId() == id || meds[1].getId() == id){
-            return true;
-        }else{
-            return false;
-        }
+        return (meds[0].getId() == id || meds[1].getId() == id);
+
+    }
+
+    public boolean contains(Medication med) {
+        return (meds[0].equals(med) || meds[1].equals(med));
+
     }
 }
