@@ -5,6 +5,7 @@ import com.medicomp.medicompbackend.model.MedicationPairing;
 import com.medicomp.medicompbackend.repository.MediRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -55,5 +56,23 @@ public class MedicationService {
     }
 
 
+    public List<MedicationPairing> getPairingsForMedication(int id) {
+        List<MedicationPairing> result = new ArrayList<>();
+        for (MedicationPairing pairing: mediRepository.getPairings()){
+            if (pairing.containsMedicationWithId(id)){
+                result.add(pairing);
+            }
+        }
+        return result;
+    }
 
+    public void updateMedication(int id, Medication medInfo) {
+        Medication med = getMedicationById(id);
+        med.setName(medInfo.getName());
+    }
+
+    public void updatePairing(int id, MedicationPairing pairingInfo) {
+        MedicationPairing pairing = getPairingById(id);
+        pairing.setComp(pairingInfo.getComp());
+    }
 }

@@ -22,6 +22,10 @@ public class MedicationPairing {
         throw new IllegalArgumentException("Only 2 Medications in Array allowed");
     }
 
+    public MedicationPairing(){
+
+    }
+
     public Compatibility getComp() {
         return comp;
     }
@@ -44,5 +48,21 @@ public class MedicationPairing {
 
     public int getId() {
         return id;
+    }
+
+    public boolean containsMedicationWithName(String name) {
+        if (meds[0].getName().equals(name) || meds[1].getName().equals(name)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean containsMedicationWithId(int id) {
+        if (meds[0].getId() == id || meds[1].getId() == id){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
