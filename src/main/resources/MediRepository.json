@@ -1,1 +1,1 @@
-{"meds":[{"id":4,"name":"test"},{"id":5,"name":"test1"},{"id":6,"name":"test2"}],"pairings":[{"id":4,"meds":[{"id":4,"name":"test"},{"id":5,"name":"test1"}],"comp":"UNKNOWN"},{"id":5,"meds":[{"id":4,"name":"test"},{"id":6,"name":"test2"}],"comp":"UNKNOWN"},{"id":6,"meds":[{"id":5,"name":"test1"},{"id":6,"name":"test2"}],"comp":"UNKNOWN"}],"highestMedId":6,"highestPairingId":6}
+{"meds":[{"id":1,"name":"test0"}],"pairings":[],"highestMedId":1,"highestPairingId":0}

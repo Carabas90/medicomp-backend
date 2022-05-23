@@ -20,6 +20,10 @@ public class MedicationService {
         }
     }
 
+    public MedicationService(MediRepository repo){
+        this.mediRepository = repo;
+    }
+
     public List<Medication> getMedications() {
         return mediRepository.getMeds();
     }
